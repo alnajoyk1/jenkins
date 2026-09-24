@@ -1,0 +1,43 @@
+# Python cache files
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+
+venv/
+.venv/
+env/
+
+# Environment variables and secrets
+
+.env
+.env.*
+!.env.example
+
+# Flask instance folder
+
+instance/
+
+# Test and coverage files
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build and distribution files
+
+build/
+dist/
+*.egg-info/
+
+# IDE settings
+
+.vscode/
+.idea/
+
+# Operating system files
+
+.DS_Store
+Thumbs.db
