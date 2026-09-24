@@ -9,11 +9,9 @@ pipeline {
 
                 sh 'python3 --version'
 
-                sh 'python3 -m venv .venv'
+                sh 'python3 -m pip install --user -r requirements.txt'
 
-                sh '.venv/bin/python -m pip install --upgrade pip'
-
-                sh '.venv/bin/python -m pip install -r requirements.txt'
+                sh 'python3 -m pip install --user pytest'
             }
         }
 
@@ -21,7 +19,7 @@ pipeline {
             steps {
                 echo 'Running Flask application tests'
 
-                sh '.venv/bin/python -m pytest -v'
+                sh 'python3 -m pytest -v'
             }
         }
 
@@ -29,7 +27,7 @@ pipeline {
             steps {
                 echo 'Checking Python files'
 
-                sh '.venv/bin/python -m py_compile app.py test_app.py'
+                sh 'python3 -m py_compile app.py test_app.py'
             }
         }
     }
