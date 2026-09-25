@@ -2,23 +2,23 @@ pipeline {
     agent any
 
     stages {
-     stages('Install Dependencies') {
+     stage('Install Dependencies') {
        steps {
-          bat 'pip install -r requirments.txt'
+          sh 'pip install -r requirments.txt'
         }
      }
 
-      stages('Test') {
+      stage('Test') {
         steps {
-          bat 'pytest'
+          sh 'pytest'
         }
       }
 
       stage('Build') {
         steps {
-          bat 'mkdir build'
-          bat 'copy app.py build\\'
-          bat 'copy requirments.txt build\\'
+          sh 'mkdir build'
+          sh 'copy app.py build\\'
+          sh 'copy requirements.txt build\\'
         }
       }
 
