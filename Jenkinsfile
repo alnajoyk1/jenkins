@@ -2,43 +2,25 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Install Dependencies') {
-            steps {
-                echo 'Installing Flask dependencies'
-
-                sh 'python3 --version'
-
-                sh 'python3 -m pip install --user -r requirements.txt'
-
-                sh 'python3 -m pip install --user pytest'
-            }
+     stages('Install Dependencies') {
+       steps {
+          bat 'pip install -r requirments.txt'
         }
+     }
 
-        stage('Test') {
-            steps {
-                echo 'Running Flask application tests'
-
-                sh 'python3 -m pytest -v'
-            }
+      stages('Test') {
+        steps {
+          bat 'pytest'
         }
+      }
 
-        stage('Build') {
-            steps {
-                echo 'Checking Python files'
-
-                sh 'python3 -m py_compile app.py test_app.py'
-            }
+      stage('Build') {
+        steps {
+          bat 'mkdir build'
+          bat 'copy app.py build\\'
+          bat 'copy requirments.txt build\\'
         }
-    }
+      }
 
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-
-        failure {
-            echo 'Pipeline failed. Check the console output.'
-        }
     }
 }
